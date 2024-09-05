@@ -1,0 +1,21 @@
+version: '3.1'
+
+services:
+  jenkins:
+    build: .
+    container_name: jenkins
+    restart: always
+    ports:
+      - "8787:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /result:/result
+    networks:
+      - docker-build_app-network
+volumes:
+  jenkins_home:
+
+networks:
+  docker-build_app-network:
+    external: true
