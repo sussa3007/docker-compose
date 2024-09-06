@@ -12,10 +12,10 @@ services:
       - jenkins_home:/var/jenkins_home
       - /result:/result
     networks:
-      - docker-build_app-network
+      - marketduck_app-network
 volumes:
   jenkins_home:
 
 networks:
-  docker-build_app-network:
+  marketduck_app-network:
     external: true
