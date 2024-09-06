@@ -1,19 +1,20 @@
-FROM jenkins/jenkins:lts-jdk11
+FROM jenkins/jenkins:lts-jdk17
 
 USER root
 
-# Java 17 설치
+# 필수 패키지 설치
 RUN apt-get update && \
-    apt-get install -y openjdk-17-jdk && \
+    apt-get install -y wget gnupg2 && \
     apt-get clean;
 
-# Jenkins 사용자에게 소유권 변경
-RUN chown -R jenkins:jenkins /usr/lib/jvm
+# 필요한 경우 추가 설정이나 패키지 설치
+# 예: Git 또는 기타 필요한 도구들
+# RUN apt-get install -y git
 
 USER jenkins
 
-# 환경 변수 설정
-ENV JAVA_HOME /usr/lib/jvm/java-17-openjdk-amd64
+# 환경 변수 설정 (이미 JDK 17이 설치되어 있음)
+ENV JAVA_HOME /opt/java/openjdk
 ENV PATH $JAVA_HOME/bin:$PATH
 
 # Jenkins 시작 포인트
