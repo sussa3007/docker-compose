@@ -2,7 +2,7 @@ version: '3.1'
 
 services:
   jenkins:
-    build: .
+    image: jenkins/jenkins:lts-jdk17
     container_name: jenkins
     restart: always
     ports:
@@ -13,6 +13,9 @@ services:
       - /result:/result
     networks:
       - marketduck_app-network
+    dns:
+      - 8.8.8.8
+
 volumes:
   jenkins_home:
 
