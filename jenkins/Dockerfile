@@ -2,8 +2,8 @@ FROM jenkins/jenkins:lts-jdk17
 
 USER root
 
-# 미러 변경 및 필요한 패키지 설치
-RUN sed -i 's|http://deb.debian.org|http://ftp.us.debian.org|' /etc/apt/sources.list && \
+# DNS 설정 추가
+RUN echo "nameserver 8.8.8.8" > /etc/resolv.conf && \
     apt-get update && \
     apt-get install -y wget gnupg && \
     apt-get clean;
